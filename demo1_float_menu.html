@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   
+    <link href="Content/normalize.css" rel="stylesheet" />
+    <link href="Content/demo1.css" rel="stylesheet" />
+    <link href="Content/flags.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div class="lang">
+        <span class="flag flag-cn"></span>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </nav>
+
+    <div style="height:1500px;"></div>
+    
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script>
+        //----HEADER---//
+        jQuery(window).scroll(function () {
+            if (jQuery(document).scrollTop() == 0) {
+           
+                jQuery('.menu').removeClass('fixtop');
+            } else {
+                jQuery('.menu').addClass('fixtop');
+             
+            }
+        });
+    </script>
+   
+
+</body>
+</html>

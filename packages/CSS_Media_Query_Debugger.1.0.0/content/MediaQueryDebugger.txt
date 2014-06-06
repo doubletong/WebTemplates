@@ -1,0 +1,9 @@
+﻿Simply add
+
+<link href="@Url.Content("~/Content/media-query-debugger.css")" rel="stylesheet" type="text/css" />
+
+to your layout to see the media query being reported.
+
+
+Additional responsive design resources for ASP.Net MVC:
+http://www.nuget.org/packages?q=prototyping&sortOrder=package-download-count
