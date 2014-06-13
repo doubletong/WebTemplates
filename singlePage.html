@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="Content/normalize.css" rel="stylesheet" />
+    <style>
+        nav{
+            position:fixed;
+            left:50px;top:30%;
+        }
+        section{color:aliceblue;}
+        #intro{
+            background-color:#00ffff;
+        }
+        #product{
+            background-color:burlywood;
+        }
+        #service{
+            background-color:brown;
+        }
+        #contact{
+            background-color:coral;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="#intro">信</a>                
+            </li>
+            <li>
+                <a href="#product">礼</a>                
+            </li>
+            <li>
+                <a href="#service">义</a>               
+            </li>
+            <li><a href="#contact">智</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <section id="intro">
+            关于我
+        </section>
+        <section id="product">
+            产品
+        </section>
+        <section id="service">
+            服务
+        </section>
+        <section id="contact">
+            联系
+        </section>
+    </div>
+
+    <script src="Scripts/jquery-2.1.1.js"></script>
+
+    <script>
+
+        function arrange() {
+            var windowHeight = $(window).height();
+            $("section").height(windowHeight);
+           
+            var nav_top = (windowHeight - $('nav').height()) / 2;
+            $('nav').css({ 'top': nav_top });
+        }
+
+
+        function gotoSection(theSection) {
+            $('html, body').animate({ scrollTop: theSection.offset().top }, 500, 'linear', function () {
+                theSection.animate({ opacity: 1 }, 500, 'linear', function () {
+                    //setTimeout(function () {
+                    //    //activelyScrolling = false;
+                    //    //lastScrollPos = $(window).scrollTop();
+                    //}, 50);
+                });
+            });
+
+        }
+
+       
+
+
+        $(document).ready(function () {
+
+            arrange();
+
+            var srcollsection;
+         
+            $(window).resize(function () {
+                arrange();
+            });
+
+            $(window).scroll(function () {
+                //var scrollPosition = $(window).scrollTop();
+                //var scrollDistance = $(window).height();
+                //var indexOfClosest = 0;
+              
+                //$("section").each(function (index, element) {
+                //    var $this = $(this);
+                //    var topPosition = $this.offset().top;
+                //    var newScrollDistance = Math.abs(scrollPosition - topPosition);
+                //    if (newScrollDistance < scrollDistance) {
+                //        srcollsection = $this;
+                //        scrollDistance = newScrollDistance;                   
+                       
+                //    }
+                //});
+
+                //setTimeout(function () {
+                //   // gotoSection(srcollsection);
+                //}, 250);
+                //// gotoDiv(indexOfClosest);
+            })
+
+       
+
+            $('nav a').click(function (e) {
+                e.preventDefault();
+                $('nav a.active').removeClass('active');
+                $(this).addClass('active');
+
+                var activ_div = $(this).attr('href');
+             //   var top_height = $(activ_div).offset().top ;
+
+                gotoSection($(activ_div));
+
+                //  alert($(activ_div).offset().top);
+
+                //$('html, body').animate({ scrollTop: top_height }, 500, 'linear', function () {
+                //    $(activ_div).animate({ opacity: 1 }, 500, 'linear', function () {
+                //        setTimeout(function () {                        
+                           
+                //        }, 50);
+                //    });
+                //});
+            })
+
+
+
+
+
+        })
+    </script>
+</body>
+</html>
