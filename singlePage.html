@@ -9,6 +9,10 @@
             position:fixed;
             left:50px;top:30%;
         }
+        .up-down-arrows{
+            position:fixed;
+            bottom:30px;right:30px;
+        }
         section{color:aliceblue;}
         #intro{
             background-color:#00ffff;
@@ -28,15 +32,15 @@
     <nav>
         <ul>
             <li>
-                <a href="#intro">信</a>                
+                <a href="#" data-index="1">信</a>                
             </li>
             <li>
-                <a href="#product">礼</a>                
+                <a href="#" data-index="2">礼</a>                
             </li>
             <li>
-                <a href="#service">义</a>               
+                <a href="#" data-index="3">义</a>               
             </li>
-            <li><a href="#contact">智</a></li>
+            <li><a href="#" data-index="4">智</a></li>
         </ul>
     </nav>
     <div class="wrapper">
@@ -53,89 +57,105 @@
             联系
         </section>
     </div>
+    <div class="up-down-arrows">
+        <span id="block-up-arrow" class="arrow"><img src="images/up_arrow.png" /></span>
+        <span id="block-down-arrow" class="arrow"><img src="images/down_arrow.png" /></span>
+    </div>
 
     <script src="Scripts/jquery-2.1.1.js"></script>
-
+    <script src="Scripts/blockScroll.js"></script>
     <script>
 
-        function arrange() {
-            var windowHeight = $(window).height();
-            $("section").height(windowHeight);
+        //function arrange() {
+        //    var windowHeight = $(window).height();
+        //    $("section").height(windowHeight);
            
-            var nav_top = (windowHeight - $('nav').height()) / 2;
-            $('nav').css({ 'top': nav_top });
-        }
+        //    var nav_top = (windowHeight - $('nav').height()) / 2;
+        //    $('nav').css({ 'top': nav_top });
+        //}
 
 
-        function gotoSection(theSection) {
-            $('html, body').animate({ scrollTop: theSection.offset().top }, 500, 'linear', function () {
-                theSection.animate({ opacity: 1 }, 500, 'linear', function () {
-                    //setTimeout(function () {
-                    //    //activelyScrolling = false;
-                    //    //lastScrollPos = $(window).scrollTop();
-                    //}, 50);
-                });
-            });
+        //function gotoSection(theSection) {
+        //    $('html, body').animate({ scrollTop: theSection.offset().top }, 500, 'linear', function () {
+        //        theSection.animate({ opacity: 1 }, 500, 'linear', function () {
+        //            //setTimeout(function () {
+        //            //    //activelyScrolling = false;
+        //            //    //lastScrollPos = $(window).scrollTop();
+        //            //}, 50);
+        //        });
+        //    });
 
-        }
+        //}
 
        
 
 
         $(document).ready(function () {
-
-            arrange();
-
-            var srcollsection;
-         
-            $(window).resize(function () {
-                arrange();
-            });
-
-            $(window).scroll(function () {
-                //var scrollPosition = $(window).scrollTop();
-                //var scrollDistance = $(window).height();
-                //var indexOfClosest = 0;
+            
+            var blockScroller = $(".wrapper").blockScroll({ fadeBlocks: false });
+            $("nav a").click(function (e) {
               
-                //$("section").each(function (index, element) {
-                //    var $this = $(this);
-                //    var topPosition = $this.offset().top;
-                //    var newScrollDistance = Math.abs(scrollPosition - topPosition);
-                //    if (newScrollDistance < scrollDistance) {
-                //        srcollsection = $this;
-                //        scrollDistance = newScrollDistance;                   
-                       
-                //    }
-                //});
+                e.preventDefault();
+                var cindex = $(this).attr("data-index");
+                blockScroller.goto(cindex);                
+            });
+           
+          
 
-                //setTimeout(function () {
-                //   // gotoSection(srcollsection);
-                //}, 250);
-                //// gotoDiv(indexOfClosest);
-            })
+            //arrange();
+
+            //var srcollsection;
+         
+            //$(window).resize(function () {
+            //    arrange();
+            //});
+
+            //$(window).scroll(function () {
+            //    var scrollPosition = $(window).scrollTop();
+            //    var scrollDistance = $(window).height();
+            //    var indexOfClosest = 0;
+              
+            //    $("section").each(function (index, element) {
+            //        var $this = $(this);
+            //        var topPosition = $this.offset().top;
+            //        var newScrollDistance = Math.abs(scrollPosition - topPosition);
+            //        if (newScrollDistance < scrollDistance) {
+            //            srcollsection = $this;
+            //            scrollDistance = newScrollDistance;
+
+            //          //  clearTimeout(timer);
+                        
+            //        }
+            //    });
+
+            //   var timer = setTimeout(function () {
+            //        gotoSection(srcollsection);
+            //    }, 1000);
+            //    //// gotoDiv(indexOfClosest);
+            //})
 
        
 
-            $('nav a').click(function (e) {
-                e.preventDefault();
-                $('nav a.active').removeClass('active');
-                $(this).addClass('active');
+            //$('nav a').click(function (e) {
+            //    e.preventDefault();
+            //    $('nav a.active').removeClass('active');
+            //    $(this).addClass('active');
 
-                var activ_div = $(this).attr('href');
-             //   var top_height = $(activ_div).offset().top ;
+            //    var activ_div = $(this).attr('href');
+            // //   var top_height = $(activ_div).offset().top ;
 
-                gotoSection($(activ_div));
+            //    gotoSection($(activ_div));
 
-                //  alert($(activ_div).offset().top);
+            //    //  alert($(activ_div).offset().top);
 
-                //$('html, body').animate({ scrollTop: top_height }, 500, 'linear', function () {
-                //    $(activ_div).animate({ opacity: 1 }, 500, 'linear', function () {
-                //        setTimeout(function () {                        
+            //    //$('html, body').animate({ scrollTop: top_height }, 500, 'linear', function () {
+            //    //    $(activ_div).animate({ opacity: 1 }, 500, 'linear', function () {
+            //    //        setTimeout(function () {                        
                            
-                //        }, 50);
-                //    });
-                //});
-            })
+            //    //        }, 50);
+            //    //    });
+            //    //});
+            //})
 
 
 

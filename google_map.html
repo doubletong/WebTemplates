@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(22.649522, 114.075676);
+        var myOptions = {
+            zoom: 16,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        var contentString = '<div id="siteNotice">' +
+        '<h3>@Helpers.Settings.ContactForm.CompanyShortName </h3>' +
+        '<div id="bodyContent">' +
+        '<p>@Helpers.Settings.ContactForm.CompanyAdd </p></div></div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: '@Helpers.Settings.ContactForm.CompanyShortName '
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+    };
+    $(function () {
+
+        initialize();
+    });
+        </script>
+</head>
+<body>
+
+</body>
+</html>
